@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: traefik-nginx-demo-route1
+  namespace: kube-system
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`nginx11.abcd.com`)
+      kind: Rule
+      services:
+        - name: nginx-ingress-demo1
+          port: 1099

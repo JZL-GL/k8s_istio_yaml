@@ -1,0 +1,16 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: kubernetes-dashboard-route
+  namespace: kube-system
+spec:
+  entryPoints:
+    - websecure
+  tls:
+    secretName: dashboard-tls
+  routes:
+    - match: Host(`cloud.abcd.com`) 
+      kind: Rule
+      services:
+        - name: kubernetes-dashboard
+          port: 443

@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: redis-tcp
+spec:
+  template:
+    metadata:
+      labels:
+        app: redis-tcp
+    spec:
+      containers:
+      - name: redis-tcp
+        image: redis
+        ports:
+        - containerPort: 6379
+          protocol: TCP
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-tcp-svc
+spec:
+  ports:
+  - port: 6379
+    targetPort: 6379
+  selector:
+    app: redis-tcp

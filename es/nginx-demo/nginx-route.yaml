@@ -1,0 +1,13 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nginx-demo-route
+spec:
+  entryPoints:
+    - web
+  routes:
+    - match: Host(`nginx.cc.com`)
+      kind: Rule
+      services:
+        - name: nginx-demo-svc
+          port: 80

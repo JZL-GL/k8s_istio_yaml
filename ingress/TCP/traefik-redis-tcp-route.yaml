@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRouteTCP
+metadata:
+  name: redis-tcp-ingress
+spec:
+    # entryPoints:
+    # - redistcp
+  routes:
+  - match: HostSNI(`*`)
+    services:
+    - name: redis-tcp-svc
+      port: 6379
+      weight: 10
+      terminationDelay: 400
